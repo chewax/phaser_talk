@@ -1,15 +1,33 @@
+/**
+ * Encapsulation for all the player related logic.
+ *
+ * @param {object} game: A Phaser game object.
+ */
 var Player = function(game){
 	this.game = game;
-	this.sprite = game.add.sprite(32, game.world.height - game.tileSize * 3, 'alien');
-	this.game.physics.arcade.enable(this.sprite);
 
-    //  Player physics properties. Give the little guy a slight bounce.
+    // Create the sprite.
+	this.sprite = game.add.sprite(
+        32,  // Coordinate in the X axis.
+        game.world.height - game.tileSize * 3,  // Coordinate in the Y axis.
+        'alien'  // Sprite type.
+    );
+
+    // Enable collisions for this player.
+	this.game.physics.arcade.enable(this.sprite);
     this.sprite.enableBody = true;
+    this.sprite.body.collideWorldBounds = true;
+
+    // Add movement properties.
     this.sprite.body.bounce.y = 0.2;
     this.sprite.body.gravity.y = 300;
-    this.sprite.body.collideWorldBounds = true;
+
 }
 
+
+/**
+ * Make the player jump if it is standing on the ground.
+ */
 Player.prototype.jump = function () {
 
 	if (this.sprite.body.touching.down) {
