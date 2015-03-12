@@ -9,12 +9,25 @@ SophiRunner.Game.prototype = {
 	},
 	
 	create: function () {
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		this.stage = new Stage(this.game);
+		this.player = new Player(this.game);
+
+		//Capture Cursors;
+    upKey = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    downKey = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    fireKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
 	},
 
 	update: function () {
-		// this.game.physics.arcade.collide(this.stage.floors, platforms);
-		
+		this.game.physics.arcade.collide(this.stage.floors, this.player.sprite);
+
+		if (upKey.isDown){
+			this.player.jump();
+		}
 	}
 
 };

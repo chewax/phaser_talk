@@ -23,5 +23,6 @@ SophiRunner.Preload.prototype = {
   loadAssets: function() {
   	this.load.image('background', '../assets/background.png');
   	this.load.image('floor', '../assets/floor.png');
+  	this.load.image('alien', '../assets/alien.png');
   }
 };
