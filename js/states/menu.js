@@ -7,7 +7,7 @@ SophiRunner.Menu.prototype = {
 	create: function() {
 		//show the space tile, repeated
 		// this.background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, ' ');
-		
+
 		//give it speed in x
 		// this.background.autoScroll(-20, 0);
 		this.sophicoso = new Sophicoso(this.game);
@@ -21,7 +21,7 @@ SophiRunner.Menu.prototype = {
 		//highest score
 		text = "Highest score: " + (this.highestScore || 0);
 		style = { font: "15px Arial", fill: "#000", align: "center" };
-	
+
 		var h = this.game.add.text(this.game.width/2, this.game.height/2 + 50, text, style);
 		h.anchor.set(0.5);
 	},
