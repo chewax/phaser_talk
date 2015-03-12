@@ -13,11 +13,15 @@ SophiRunner.Preload.prototype = {
     this.preloadBar.anchor.setTo(0.5);
 
     this.load.setPreloadSprite(this.preloadBar);
-
-  	//load game assets
+    this.loadAssets();
   },
   
   create: function() {
   	this.state.start('Menu');
+  },
+
+  loadAssets: function() {
+  	this.load.image('background', '../assets/background.png');
+  	this.load.image('floor', '../assets/floor.png');
   }
 };
