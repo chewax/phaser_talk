@@ -5,12 +5,24 @@ SophiRunner.Menu = function(){};
 SophiRunner.Menu.prototype = {
 
 	create: function() {
-		this.sophicoso = new Sophicoso(this.game);
+		this.sophicosoLeft = new Sophicoso(
+            this.game.world.centerX - 80,
+            this.game.world.centerY - 100,
+            8,
+            this.game
+        );
+		this.sophicosoRight = new Sophicoso(
+            this.game.world.centerX + 80,
+            this.game.world.centerY - 100,
+            -2,
+            this.game
+        );
         this.showMenu();
 	},
 
 	update: function() {
-		this.sophicoso.spin();
+		this.sophicosoLeft.spin();
+		this.sophicosoRight.spin();
 
 		if(this.game.input.activePointer.justPressed())
 			this.game.state.start('Game');

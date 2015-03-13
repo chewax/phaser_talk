@@ -1,8 +1,9 @@
-var Sophicoso = function (game) {
-	this.sprite = game.add.sprite(game.width/2, game.height/2 - 100, 'logo');
+var Sophicoso = function (x, y, speed, game) {
+	this.sprite = game.add.sprite(x, y, 'logo');
 	this.sprite.anchor.setTo(0.5, 0.5);
+    this.speed = speed;
 };
 
 Sophicoso.prototype.spin = function () {
-	this.sprite.angle += 25;
+	this.sprite.angle += this.speed;
 };
