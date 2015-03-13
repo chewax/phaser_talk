@@ -19,6 +19,7 @@ SophiRunner.Game.prototype = {
 
 	update: function () {
 		this.game.physics.arcade.collide(this.stage.floors, this.player.sprite);
+		this.game.physics.arcade.collide(this.stage.boxes, this.player.sprite);
 
         var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown,
             sprinting = RightArrow.isDown || L.isDown,
