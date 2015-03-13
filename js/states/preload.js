@@ -5,17 +5,12 @@ SophiRunner.Preload = function () {};
 SophiRunner.Preload.prototype = {
 
   preload: function() {
-  	//show logo in loading screen
-  	this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
-    this.splash.anchor.setTo(0.5);
+    this.showLogo();
+    this.showLoadBar();
 
-    this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
-    this.preloadBar.anchor.setTo(0.5);
-
-    this.load.setPreloadSprite(this.preloadBar);
     this.loadAssets();
   },
-  
+
   create: function() {
   	this.state.start('Menu');
   },
@@ -26,8 +21,28 @@ SophiRunner.Preload.prototype = {
   	this.load.image('floor', '../assets/floor.png');
   	this.load.image('alien', '../assets/alien.png');
   	this.load.image('jump', '../assets/alien_jump.png');
-  	// this.load.image('walk1', '../assets/alien_walk1.png');
-  	// this.load.image('walk2', '../assets/alien_walk2.png');
+    this.load.audio('theme', '../assets/theme.wav');
   	this.load.spritesheet('alien_walk', 'assets/spritesheet.png', 74, 100);
+  },
+
+  showLogo: function () {
+  	// Show logo in loading screen
+  	this.splash = this.add.sprite(
+        this.game.world.centerX,
+        this.game.world.centerY,
+        'logo'
+    );
+    this.splash.anchor.setTo(0.5);
+  },
+
+  showLoadBar: function () {
+    this.preloadBar = this.add.sprite(
+        this.game.world.centerX,
+        this.game.world.centerY + 128,
+        'preloadbar'
+    );
+    this.preloadBar.anchor.setTo(0.5);
+
+    this.load.setPreloadSprite(this.preloadBar);
   }
 };

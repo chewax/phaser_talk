@@ -11,6 +11,12 @@ SophiRunner.Game.prototype = {
 
 	create: function () {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        // Add some music.
+        this.music = this.game.add.audio('theme');
+        this.music.loop = true;
+        this.music.play();
+
 		this.stage = new Stage(this.game);
 		this.player = new Player(this.game);
 
