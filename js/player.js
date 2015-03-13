@@ -25,23 +25,19 @@ var Player = function(game){
  * Make the player jump if it is standing on the ground.
  */
 Player.prototype.jump = function () {
-
-	if (this.sprite.body.touching.down) {
+	if (this.sprite.body.touching.down)
 		this.sprite.body.velocity.y = -800;
-		this.sprite.animations.stop();
-	}
-}
+
+	this.sprite.animations.stop();
+};
 
 
 /**
  * Play walking animation.
  */
 Player.prototype.walk = function () {
-	if (this.sprite.body.touching.down) {
-        this.sprite.body.velocity.x = 0;
-        this.sprite.animations.play('walk');
-    }
-}
+    this.sprite.body.velocity.x = 0;
+};
 
 
 /**

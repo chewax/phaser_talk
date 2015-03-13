@@ -36,6 +36,11 @@ SophiRunner.Game.prototype = {
         if (!sprinting && !braking)
             this.player.walk();
 
+        // If the player is standing on the ground, play the walking
+        // animation.
+        if (this.player.sprite.body.touching.down)
+            this.player.sprite.animations.play('walk');
+
 	},
 
     setControls: function () {
@@ -44,11 +49,11 @@ SophiRunner.Game.prototype = {
         K = this.game.input.keyboard.addKey(Phaser.Keyboard.K);
         Spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        // Move right.
+        // Sprint.
         RightArrow = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         L = this.game.input.keyboard.addKey(Phaser.Keyboard.L);
 
-        // Move left.
+        // Brake.
         LeftArrow = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         H = this.game.input.keyboard.addKey(Phaser.Keyboard.H);
     }
