@@ -36,8 +36,7 @@ Player.prototype.jump = function () {
  * Play walking animation.
  */
 Player.prototype.walk = function () {
-    this.sprite.body.velocity.x = 0;
-};
+    this.sprite.body.velocity.x = 0; };
 
 
 /**
@@ -47,9 +46,20 @@ Player.prototype.sprint = function () {
     this.sprite.body.velocity.x = 150;
 };
 
+
 /**
  * Move to the left.
  */
 Player.prototype.brake = function () {
     this.sprite.body.velocity.x = -150;
+};
+
+
+/**
+ * Cause the player to colide with the given objects.
+ *
+ * @param {object[]} objects: Objects which the player will colide with.
+ */
+Player.prototype.colideWith = function (objects) {
+    this.game.physics.arcade.collide(objects, this.sprite);
 };

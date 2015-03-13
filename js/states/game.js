@@ -1,5 +1,5 @@
 var SophiRunner = SophiRunner || {};
-var UpArrow, K, Spacebar, RightArrow, L, H, LeftArrow;
+var UpArrow, K, Spacebar, RightArrow, L, H, LeftArrow, Pointer;
 
 SophiRunner.Game = function (){};
 
@@ -18,10 +18,13 @@ SophiRunner.Game.prototype = {
 	},
 
 	update: function () {
-		this.game.physics.arcade.collide(this.stage.floors, this.player.sprite);
-		this.game.physics.arcade.collide(this.stage.boxes, this.player.sprite);
+        this.player.colideWith(this.stage.floors);
+        this.player.colideWith(this.stage.boxes.group);
 
-        var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown,
+
+        // Check which actions the user is performing.
+        var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown ||
+                      Pointer.justPressed(),
             sprinting = RightArrow.isDown || L.isDown,
             braking = LeftArrow.isDown || H.isDown;
 
@@ -42,6 +45,9 @@ SophiRunner.Game.prototype = {
         if (this.player.sprite.body.touching.down)
             this.player.sprite.animations.play('walk');
 
+
+        // Generate the new map.
+        this.stage.update();
 	},
 
     setControls: function () {
@@ -49,6 +55,7 @@ SophiRunner.Game.prototype = {
         UpArrow = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
         K = this.game.input.keyboard.addKey(Phaser.Keyboard.K);
         Spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        Pointer = this.game.input.activePointer;
 
         // Sprint.
         RightArrow = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
