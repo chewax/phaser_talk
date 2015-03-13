@@ -11,6 +11,7 @@ var Stage = function (game) {
 
     this.coins = new CoinManager(this);
     this.boxes = new BoxManager(this);
+    this.fireballs = new FireBallManager(this);
     
 };
 
@@ -48,11 +49,27 @@ Stage.prototype.loadFloor = function () {
 Stage.prototype.update = function () {
     this.coins.generate();
     this.boxes.generate();
+    this.fireballs.generate();
 };
 
 
 Stage.prototype.loadScoreText = function () {
 	var t, text, h, style;
+
+	// highest Score text.
+		// text = "Highest score: " + this.game.maxScore,
+  //       style = {
+  //           font: "20px Arial",
+  //           fill: "#000",
+  //           align: "center"
+  //       },
+  //       t = this.game.add.text(
+  //           this.game.width - 20,
+  //           20,
+  //           text,
+  //           style
+  //       );
+		// t.anchor.set(1,0);
 
 		// Score Text.
 		text = "Score: 0",
@@ -68,6 +85,7 @@ Stage.prototype.loadScoreText = function () {
             style
         );
 		t.anchor.set(0);
+
 
 		return t;
 }

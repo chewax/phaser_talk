@@ -35,7 +35,7 @@ SophiRunner.Menu.prototype = {
 		t.anchor.set(0.5);
 
 		// Highest score label.
-		text = "Highest score: " + (this.highestScore || 0);
+		text = "Highest score: " + (this.game.maxScore || 0);
 		style = {
             font: "15px Arial",
             fill: "#000",

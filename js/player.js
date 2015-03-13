@@ -74,13 +74,28 @@ Player.prototype.colideWith = function (objects) {
     this.game.physics.arcade.collide(objects, this.sprite);
 };
 
-Player.prototype.collect = function(objects) {
+Player.prototype.collects = function(objects) {
 	this.game.physics.arcade.overlap(objects, this.sprite, this.collectCoin, null, this);
 }
+
+Player.prototype.diesWith = function(objects) {
+	this.game.physics.arcade.overlap(objects, this.sprite, this.die, null, this);
+}
+
 
 Player.prototype.collectCoin = function(player, coin){
 	coin.soundfx.play();
 	this.score += 10;
 	this.game.scoreText.text = 'Score: ' + this.score;
+
+	if (this.score > this.game.maxScore){
+		this.game.maxScore = this.score;
+	}
+
 	coin.kill();
+}
+
+Player.prototype.die = function(player, coin) {
+	this.game.music.stop();
+    this.game.state.start('GameOver');
 }

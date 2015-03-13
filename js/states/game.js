@@ -13,10 +13,10 @@ SophiRunner.Game.prototype = {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         // Add some music.
-        this.music = this.game.add.audio('theme');
-        this.music.loop = true;
-        this.music.loop.volume = 0.7;
-        this.music.play();
+        this.game.music = this.game.add.audio('theme');
+        this.game.music.loop = true;
+        this.game.music.loop.volume = 0.7;
+        this.game.music.play();
 
 		this.stage = new Stage(this.game);
 		this.player = new Player(this.game);
@@ -26,9 +26,10 @@ SophiRunner.Game.prototype = {
 
 	update: function () {
         this.player.colideWith(this.stage.floors);
-        this.player.colideWith(this.stage.boxes.group);
-        this.player.collect(this.stage.coins.group);
-        // this.player.colideWith(this.stage.coins.group);
+        this.player.colideWith(this.stage.boxes.group);     
+        this.player.collects(this.stage.coins.group);
+        this.player.diesWith(this.stage.fireballs.group);
+        
 
         // Check which actions the user is performing.
         var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown ||
@@ -58,7 +59,7 @@ SophiRunner.Game.prototype = {
 
         // If the player is out of bounds, game over.
         if (this.player.sprite.body.x + this.player.sprite.body.width < 0) {
-            this.music.stop();
+            this.game.music.stop();
             this.game.state.start('GameOver');
         }
 	},
