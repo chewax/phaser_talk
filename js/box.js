@@ -5,6 +5,7 @@ var BoxManager = function (stage) {
 
     // Create the tiles group.
     this.createGroup();
+
 };
 
 
@@ -21,6 +22,7 @@ BoxManager.prototype.createGroup = function () {
     // Autokill boxes out of boundaries.
     this.group.outOfBoundsKill = true;
     this.group.exists = true;
+    // this.group.z = 50;
 };
 
 

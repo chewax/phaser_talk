@@ -6,9 +6,12 @@ var Stage = function (game) {
 
 	this.loadBackground();
 	this.loadFloor();
-    // this.loadBoxes();
-    //
+
+	this.game.scoreText = this.loadScoreText();
+
+    this.coins = new CoinManager(this);
     this.boxes = new BoxManager(this);
+    
 };
 
 
@@ -43,5 +46,28 @@ Stage.prototype.loadFloor = function () {
  * PURE MAGIC!!
  */
 Stage.prototype.update = function () {
+    this.coins.generate();
     this.boxes.generate();
 };
+
+
+Stage.prototype.loadScoreText = function () {
+	var t, text, h, style;
+
+		// Score Text.
+		text = "Score: 0",
+        style = {
+            font: "20px Arial",
+            fill: "#000",
+            align: "center"
+        },
+        t = this.game.add.text(
+            20,
+            20,
+            text,
+            style
+        );
+		t.anchor.set(0);
+
+		return t;
+}

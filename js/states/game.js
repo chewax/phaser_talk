@@ -15,6 +15,7 @@ SophiRunner.Game.prototype = {
         // Add some music.
         this.music = this.game.add.audio('theme');
         this.music.loop = true;
+        this.music.loop.volume = 0.7;
         this.music.play();
 
 		this.stage = new Stage(this.game);
@@ -26,6 +27,8 @@ SophiRunner.Game.prototype = {
 	update: function () {
         this.player.colideWith(this.stage.floors);
         this.player.colideWith(this.stage.boxes.group);
+        this.player.collect(this.stage.coins.group);
+        // this.player.colideWith(this.stage.coins.group);
 
         // Check which actions the user is performing.
         var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown ||

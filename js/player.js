@@ -18,6 +18,13 @@ var Player = function(game){
 	// Add movement properties.
 	this.sprite.body.bounce.y = 0.3;
 	this.sprite.body.gravity.y = 1500;
+
+
+	this.jumpfx = this.game.add.audio('jumpfx');
+    this.jumpfx.loop = false;
+    this.jumpfx.volume = 1;
+
+	this.score = 0;
 }
 
 
@@ -25,8 +32,11 @@ var Player = function(game){
  * Make the player jump if it is standing on the ground.
  */
 Player.prototype.jump = function () {
-	if (this.sprite.body.touching.down)
+	if (this.sprite.body.touching.down) {
 		this.sprite.body.velocity.y = -800;
+		this.jumpfx.play();
+	}
+
 
 	this.sprite.animations.stop();
 };
@@ -63,3 +73,14 @@ Player.prototype.brake = function () {
 Player.prototype.colideWith = function (objects) {
     this.game.physics.arcade.collide(objects, this.sprite);
 };
+
+Player.prototype.collect = function(objects) {
+	this.game.physics.arcade.overlap(objects, this.sprite, this.collectCoin, null, this);
+}
+
+Player.prototype.collectCoin = function(player, coin){
+	coin.soundfx.play();
+	this.score += 10;
+	this.game.scoreText.text = 'Score: ' + this.score;
+	coin.kill();
+}
