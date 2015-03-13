@@ -25,6 +25,10 @@ SophiRunner.Game.prototype = {
 	update: function () {
 		this.game.physics.arcade.collide(this.stage.floors, this.player.sprite);
 
+		if (this.player.sprite.body.touching.down) {
+			this.player.sprite.animations.play('walk');
+		}
+
 		if (upKey.isDown){
 			this.player.jump();
 		}

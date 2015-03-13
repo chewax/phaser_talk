@@ -24,5 +24,9 @@ SophiRunner.Preload.prototype = {
   	this.load.image('background', '../assets/background.png');
   	this.load.image('floor', '../assets/floor.png');
   	this.load.image('alien', '../assets/alien.png');
+  	this.load.image('jump', '../assets/alien_jump.png');
+  	// this.load.image('walk1', '../assets/alien_walk1.png');
+  	// this.load.image('walk2', '../assets/alien_walk2.png');
+  	this.load.spritesheet('alien_walk', 'assets/spritesheet.png', 74, 100);
   }
 };
