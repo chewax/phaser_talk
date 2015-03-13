@@ -16,8 +16,8 @@ var Player = function(game){
 	this.sprite.body.collideWorldBounds = true;
 
 	// Add movement properties.
-	this.sprite.body.bounce.y = 0.2;
-	this.sprite.body.gravity.y = 2000;
+	this.sprite.body.bounce.y = 0.3;
+	this.sprite.body.gravity.y = 1500;
 }
 
 
@@ -37,21 +37,23 @@ Player.prototype.jump = function () {
  * Play walking animation.
  */
 Player.prototype.walk = function () {
-	this.sprite.body.velocity.x = 0;
-	this.sprite.animations.play('walk');
+	if (this.sprite.body.touching.down) {
+        this.sprite.body.velocity.x = 0;
+        this.sprite.animations.play('walk');
+    }
 }
 
 
 /**
  * Move to the right.
  */
-Player.prototype.moveRight = function () {
-    this.sprite.body.velocity.x = 120;
+Player.prototype.sprint = function () {
+    this.sprite.body.velocity.x = 150;
 };
 
 /**
  * Move to the left.
  */
-Player.prototype.moveLeft = function () {
-    this.sprite.body.velocity.x = -120;
+Player.prototype.brake = function () {
+    this.sprite.body.velocity.x = -150;
 };

@@ -20,9 +20,6 @@ SophiRunner.Game.prototype = {
 	update: function () {
 		this.game.physics.arcade.collide(this.stage.floors, this.player.sprite);
 
-		if (this.player.sprite.body.touching.down)
-			this.player.sprite.animations.play('walk');
-
         var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown,
             sprinting = RightArrow.isDown || L.isDown,
             braking = LeftArrow.isDown || H.isDown;
@@ -31,10 +28,10 @@ SophiRunner.Game.prototype = {
 			this.player.jump();
 
         if (sprinting)
-            this.player.moveRight();
+            this.player.sprint();
 
         if (braking)
-            this.player.moveLeft();
+            this.player.brake();
 
         if (!sprinting && !braking)
             this.player.walk();
