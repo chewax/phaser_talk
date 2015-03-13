@@ -4,5 +4,5 @@ var Sophicoso = function (game) {
 };
 
 Sophicoso.prototype.spin = function () {
-	this.sprite.angle += 1;
+	this.sprite.angle += 25;
 };

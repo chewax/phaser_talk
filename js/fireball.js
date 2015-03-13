@@ -38,7 +38,7 @@ FireBallManager.prototype.create = function () {
 	var tile = this.group.create(x, y, 'fireball');
 
 	tile.body.immovable = false;
-	tile.body.gravity.y = 400;
+	tile.body.gravity.y = 1200;
 	tile.body.velocity.x = this.stage.levelSpeed - 200;
 
 	tile.soundfx = this.game.add.audio('coinfx');
@@ -62,5 +62,5 @@ FireBallManager.prototype.generate = function () {
 	this.create();
 
 	// Update the next box time.
-	this.nextCoinTime = this.game.time.time + 400 * Math.round(Math.random() * 5);
+	this.nextCoinTime = this.game.time.time + 400 * Math.round(Math.random() * 0.1);
 };
