@@ -23,6 +23,7 @@ SophiRunner.Preload.prototype = {
   	this.load.image('jump', '../assets/alien_jump.png');
   	this.load.image('coin', '../assets/coin.png');
   	this.load.image('fireball', '../assets/fireball.png');
+  	this.load.image('umbrella', '../assets/umbrella.png');
     this.load.audio('theme', '../assets/theme.wav');
     this.load.audio('game-over', '../assets/game-over.mp3');
     this.load.audio('jumpfx', '../assets/jump.mp3');

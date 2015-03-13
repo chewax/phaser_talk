@@ -7,13 +7,19 @@ var Player = function(game){
 	this.game = game;
 
 	// Create the sprite and add animation.
-	this.sprite = this.game.add.sprite(50, 50, 'alien_walk');
+	this.sprite = this.game.add.sprite(50, 200, 'alien_walk');
 	this.sprite.animations.add('walk', [0,1], 10, true, true);
 
 	// Enable collisions for this player.
 	this.game.physics.arcade.enable(this.sprite);
 	this.sprite.enableBody = true;
 	this.sprite.body.collideWorldBounds = true;
+
+	//Enable collisions for cover
+	this.cover = this.game.add.sprite(50,200,'umbrella');
+	this.game.physics.arcade.enable(this.cover);
+	this.cover.enableBody = true;
+	// this.cover.body.collideWorldBounds = true;
 
 	// Add movement properties.
 	this.sprite.body.bounce.y = 0.3;
@@ -46,7 +52,9 @@ Player.prototype.jump = function () {
  * Play walking animation.
  */
 Player.prototype.walk = function () {
-    this.sprite.body.velocity.x = 0; };
+    this.sprite.body.velocity.x = 0; 
+    this.updateCoverPosition();
+};
 
 
 /**
@@ -54,6 +62,7 @@ Player.prototype.walk = function () {
  */
 Player.prototype.sprint = function () {
     this.sprite.body.velocity.x = 150;
+    this.updateCoverPosition();
 };
 
 
@@ -62,8 +71,13 @@ Player.prototype.sprint = function () {
  */
 Player.prototype.brake = function () {
     this.sprite.body.velocity.x = -150;
+    this.updateCoverPosition();
 };
 
+Player.prototype.updateCoverPosition = function () {
+	this.cover.body.x = this.sprite.body.x;
+	this.cover.body.y = this.sprite.body.y - 70;
+};
 
 /**
  * Cause the player to colide with the given objects.
@@ -82,6 +96,10 @@ Player.prototype.diesWith = function(objects) {
 	this.game.physics.arcade.overlap(objects, this.sprite, this.die, null, this);
 }
 
+Player.prototype.shields = function(objects) {
+	this.game.physics.arcade.overlap(objects, this.cover, this.shield, null, this);
+}
+
 
 Player.prototype.collectCoin = function(player, coin){
 	coin.soundfx.play();
@@ -98,4 +116,9 @@ Player.prototype.collectCoin = function(player, coin){
 Player.prototype.die = function(player, coin) {
 	this.game.music.stop();
     this.game.state.start('GameOver');
+}
+
+Player.prototype.shield = function(umbrella, fireball) {
+	console.log(fireball);
+	fireball.kill();
 }

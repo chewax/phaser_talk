@@ -29,6 +29,7 @@ SophiRunner.Game.prototype = {
         this.player.colideWith(this.stage.boxes.group);     
         this.player.collects(this.stage.coins.group);
         this.player.diesWith(this.stage.fireballs.group);
+        this.player.shields(this.stage.fireballs.group);
         
 
         // Check which actions the user is performing.
