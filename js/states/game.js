@@ -27,7 +27,6 @@ SophiRunner.Game.prototype = {
         this.player.colideWith(this.stage.floors);
         this.player.colideWith(this.stage.boxes.group);
 
-
         // Check which actions the user is performing.
         var jumping = UpArrow.isDown || K.isDown || Spacebar.isDown ||
                       Pointer.justPressed(),
@@ -51,9 +50,14 @@ SophiRunner.Game.prototype = {
         if (this.player.sprite.body.touching.down)
             this.player.sprite.animations.play('walk');
 
-
         // Generate the new map.
         this.stage.update();
+
+        // If the player is out of bounds, game over.
+        if (this.player.sprite.body.x + this.player.sprite.body.width < 0) {
+            this.music.stop();
+            this.game.state.start('GameOver');
+        }
 	},
 
     setControls: function () {

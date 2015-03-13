@@ -6,5 +6,6 @@ SophiRunner.game.state.add('Boot', SophiRunner.Boot);
 SophiRunner.game.state.add('Preload', SophiRunner.Preload);
 SophiRunner.game.state.add('Menu', SophiRunner.Menu);
 SophiRunner.game.state.add('Game', SophiRunner.Game);
+SophiRunner.game.state.add('GameOver', SophiRunner.GameOver);
 
 SophiRunner.game.state.start('Boot');

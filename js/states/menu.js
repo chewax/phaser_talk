@@ -5,8 +5,6 @@ SophiRunner.Menu = function(){};
 SophiRunner.Menu.prototype = {
 
 	create: function() {
-        var t, text, h, style;
-
 		this.sophicoso = new Sophicoso(this.game);
         this.showMenu();
 	},
@@ -19,6 +17,8 @@ SophiRunner.Menu.prototype = {
 	},
 
     showMenu: function () {
+        var t, text, h, style;
+
 		// Menu title.
 		text = "Tap to begin",
         style = {
